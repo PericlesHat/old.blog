@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="baidu-site-verification" content="093lY4ziMu" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="description" content="Welcome">
+    <meta name="keyword"  content="keyon">
+    <link rel="shortcut icon" href="/img/ironman-draw.png">
+    <!-- Place this tag in your head or just before your close body tag. -->
+    <script async defer src="https://buttons.github.io/buttons.js"></script>
+    <!--<link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>-->
+    <title>
+        
+          Sequential Monte Carlo - Keyon&#39;s Blog
+        
+    </title>
+
+    <link rel="canonical" href="https://dusign.net/2022/08/02/17/">
+
+    <!-- Bootstrap Core CSS -->
+    
+<link rel="stylesheet" href="/css/bootstrap.min.css">
+
+
+    <!-- Custom CSS --> 
+    
+        
+<link rel="stylesheet" href="/css/dusign-light.css">
+
+        
+<link rel="stylesheet" href="/css/dusign-common-light.css">
+
+        
+<link rel="stylesheet" href="/css/font-awesome.css">
+
+        
+<link rel="stylesheet" href="/css/toc.css">
+
+        <!-- background effects end -->
+    
+    
+    <!-- Pygments Highlight CSS -->
+    
+<link rel="stylesheet" href="/css/highlight.css">
+
+
+    
+<link rel="stylesheet" href="/css/widget.css">
+
+
+    
+<link rel="stylesheet" href="/css/rocket.css">
+
+
+    
+<link rel="stylesheet" href="/css/signature.css">
+
+
+    
+<link rel="stylesheet" href="/css/fonts.googleapis.css">
+
+
+    <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.3.0/css/font-awesome.min.css">
+
+    <!-- photography -->
+    
+<link rel="stylesheet" href="/css/photography.css">
+
+
+    <!-- ga & ba script hoook -->
+    <script></script>
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="">
+
+    <!-- background effects start -->
+    
+    <!-- background effects end -->
+
+	<!-- Modified by Yu-Hsuan Yen -->
+<!-- Post Header -->
+<style type="text/css">
+    header.intro-header{
+        
+            
+                background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url('../../../../img/latte.jpg')
+                /*post*/
+            
+        
+    }
+    
+</style>
+
+<header class="intro-header" >
+    <!-- Signature -->
+    <div id="signature">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                
+                    <div class="post-heading">
+                        <div class="tags">
+                            
+                              <a class="tag" href="/tags/#Machine Learning" title="Machine Learning">Machine Learning</a>
+                            
+                        </div>
+                        <h1>Sequential Monte Carlo</h1>
+                        <h2 class="subheading"></h2>
+                        <span class="meta">
+                            Posted by Keyon Cheung on
+                            2022-08-02
+                        </span>
+
+                        
+                            <div class="blank_box"></div>
+                            <span class="meta">
+                                Words <span class="post-count">1.1k</span> and
+                                Reading Time <span class="post-count">6</span> Minutes
+                            </span>
+                            <div class="blank_box"></div>
+                            <!-- 不蒜子统计 start -->
+                            <span class="meta">
+                                Viewed <span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span> Times
+                            </span>
+                            <!-- 不蒜子统计 end -->
+                        
+
+                    </div>
+                
+
+                </div>
+            </div>
+        </div>      
+    </div>
+
+    
+    <div class="waveWrapper">
+        <div class="wave wave_before" style="background-image: url('/img/wave-light.png')"></div>
+        <div class="wave wave_after" style="background-image: url('/img/wave-light.png')"></div>
+    </div>
+    
+</header>
+
+	
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">Keyon Cheung</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+
+                    
+
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/about/">About</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/archive/">Archives</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/photography/">Photography</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/tags/">Tags</a>
+                        </li>
+                        
+                    
+                    
+                    
+                </ul>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+    <!-- Main Content -->
+    <!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row" style="margin: 1em 0">
+
+            <!-- Post Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                <h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><p>Lots of real-world data analysis efforts often include estimating the unknown data from a limited number of given observations. <strong>From a Bayesian perspective, one must use a prior distribution of the unobservable quantity of interest and likelihood functions which relate the observables to the unobservables to model the time series data.</strong> Generally, the observations are recorded in chronological order, which helps to inference the unknown data and continuously update the posterior distribution. Such Bayesian models are often taken advantage in many areas including estimating digital signals and analyze the volatility of stock market.</p>
+<p>Sequential Monte Carlo (SMC) methods are simulation-based methods for calculating approximations to posterior distributions. They avoid making linearity or normality assumptions required by related methods such as the Kalman filter. Obviously, it is too sophisticated for approaches based on deterministic numerical integration to yield the accurate results. In practical cases, data often shows in high dimensions (e.g., human motion skeleton analysis), which makes those methods even more difficult to calculate. Sequential Monte Carlo, on the other hand, is a simulation-based method that provides a convenient way to compute the posterior distribution without necessarily computing an explicit result.</p>
+<h2 id="Model"><a href="#Model" class="headerlink" title="Model"></a>Model</h2><p>Let ${x<em>t}</em>{t=0}^\infty$ denote the sequence of unobserved states, with $x<em>t\in𝒳$. We consider only the case when ${x_t}$ is a Markov process with initial distribution $p(x0)$, which actually is not necessary and is only for tractability. Let $p(x_t|x</em>{t−1})$ denote the transition equation. Let  ${y<em>t}</em>{t=1}^\infty$ denote a sequence of observations with $y<em>t\in𝒴$. Suppose that, given ${x_t}$, the observations are conditionally independent. Let $p(y_t|y</em>{t−1})$ denote the marginal distribution, or the observation equation.</p>
+<p>In brief, we use $x$ to describe the states and $y$ to describe the observations. Our goal is to estimate the posterior distribution and its corresponding characteristics  (mean, variance, covariance, etc.) in time series.</p>
+<script type="math/tex; mode=display">
+\textstyle\textstyle\begin{array}{c}p(x_0),\\[1.0ex]p(x_t\vert x_{t-1})\hspace{1em}\text{for}\hspace{1em}t\geq1,\\[1.0ex]p(y_t\vert x_t)\hspace{1em}\text{for}\hspace{1em}t\geq1.\end{array}</script><p>At any time $t$, the posterior distribution is given by Bayes’ theorem</p>
+<script type="math/tex; mode=display">
+\textstyle{\displaystyle p}{\displaystyle(}{\displaystyle x_{0:t}}{\displaystyle\vert}{\displaystyle y_{1:t}}{\displaystyle)}{\displaystyle=}{\displaystyle\frac{p(y_{1:t}\vert x_{0:t})p(x_{0:t})}{\int p(y_{1:t}\vert x_{0:t})p(x_{0:t}){\mathrm{dx}}_{0:t}}}.</script><p>It is possible to obtain straightforwardly a recursive formula for this joint distribution ${\displaystyle p}{\displaystyle(}{\displaystyle x<em>{0:t}}{\displaystyle\vert}{\displaystyle y</em>{1:t}}{)}$,</p>
+<script type="math/tex; mode=display">
+p(x_{0:t+1}\vert y_{1:t+1})=\frac{p(y_{t+1}\vert x_{t+1})p(x_{t+1}\vert x_t)}{p(y_{t+1}\vert y_{1:t})}p(x_{0:t}\vert y_{1:t}).</script><p>The marginal distribution ${\displaystyle p}{\displaystyle(}{\displaystyle x<em>{t}}{\displaystyle\vert}{\displaystyle y</em>{1:t-1}}{)}$ also satisfies the following recursion.</p>
+<script type="math/tex; mode=display">
+Prediction: \textstyle{\displaystyle{\displaystyle P}_N}{\displaystyle(}{\displaystyle{\displaystyle\mathrm{dx}}_{0:t}}{\displaystyle\vert}{\displaystyle{\displaystyle y}_{0:t}}{\displaystyle)}{\displaystyle=}{\displaystyle N^{-1}}{\displaystyle\sum_{i=1}^N}{\displaystyle{\displaystyle\delta}_{x_{0:t}^{(i)}}}{\displaystyle(}{\displaystyle{\displaystyle\mathrm{dx}}_{0:t}}{\displaystyle)}{\displaystyle;}
+\\
+Updating: \textstyle{\displaystyle\int}{\displaystyle{\displaystyle h}_t}{\displaystyle(}{\displaystyle{\displaystyle x}_{0:t}}{\displaystyle)}{\displaystyle{\displaystyle P}_N}{\displaystyle(}{\displaystyle{\displaystyle\mathrm{dx}}_{0:t}}{\displaystyle\vert}{\displaystyle{\displaystyle y}_{1:t}}{\displaystyle)}{\displaystyle=}{\displaystyle N^{-1}}{\displaystyle\sum_{i=1}^N}{\displaystyle{\displaystyle h}_t}{\displaystyle(}{\displaystyle{\displaystyle x}_{0:t}^{(i)}}{\displaystyle)}{\displaystyle.}</script><p>Such constants and posteriors, however, involve high-dimensional integrals, which are definitely not easy to solve. In SMC, one can approximate the distribution for sampling estimation, such as importance sampling, sequential importance sampling, etc.</p>
+<h2 id="Monte-Carlo-Sampling"><a href="#Monte-Carlo-Sampling" class="headerlink" title="Monte Carlo Sampling"></a>Monte Carlo Sampling</h2><p>Monte Carlo sampling of a probability distribution $p(x)$ is divided into three main types: direct sampling, rejection sampling and importance sampling. </p>
+<p>For a probability distribution with a known probability density function and a cumulative probability density function, one can sample directly from the cumulative distribution function (cdf), and this is what we called as direct sampling. For distributions with unknown cumulative distribution functions, we can use rejection sampling. As shown in the figure below, $p(z)$ is the distribution we want to sample, $q(z)$ is our <strong>proposed distribution</strong>, so that $kq(z) &gt; p(z)$.  We first sample the particles in $kq(z)$ according to the direct sampling method, and then judge what region the particles fall in on the way, for the particles falling in the gray area to be rejected, and the particles falling under the The particles that fall under the red line are accepted, and finally we get $N$ particles that conform to $p(z)$.</p>
+<p><img src="https://img2018.cnblogs.com/blog/1493095/201812/1493095-20181209211145669-781458066.png" alt=""></p>
+<h2 id="Sequential-Importance-Sampling-and-Particle-Filter"><a href="#Sequential-Importance-Sampling-and-Particle-Filter" class="headerlink" title="Sequential Importance Sampling and Particle Filter"></a>Sequential Importance Sampling and Particle Filter</h2><p>Both direct sampling and rejection sampling assume equal weights for each particle, while importance sampling gives each particle a different weight and uses a weighted average method to calculate the expectation.</p>
+<p>For the state space model,  sequential importance sampling is widely considered empirically useful and effective. One first samples the variables at moment $t$ from the proposed distribution, and next calculates the sequence weights by multiplying the particle weights of the previous generation with the particle weights calculated in the current.</p>
+<p>Sequence importance sampling can solve the particle weights corresponding to an entire time series, but such sampling may result in small weights for some particle sequences and large weights for only a few particle sequences. In the long run, the expectation and area calculated by this method might be unstable.</p>
+<p>Resampling is used to solve such problems. <strong>We copy the particle sequences with larger weights and discard the particle sequences with smaller weights.</strong> After that, we obtain $N$ sequences of particles with equal weights. By resampling, we can avoid the problem that some particles have small weights and some have large weights due to too many iterations of weights in importance sampling. The main resampling methods include systematic resampling, residual resampling, polynomial resampling, etc. The following figure shows how resampling works.</p>
+<p><img src="https://img2020.cnblogs.com/blog/2222564/202111/2222564-20211124205333771-1856406019.png" alt=""></p>
+<p>The algorithm shows below.</p>
+<p><img src="https://i.bmp.ovh/imgs/2022/08/02/4aa81dde489e73d1.png" alt=""></p>
+<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><ul>
+<li><a href="https://jblevins.org/notes/smc-intro" target="_blank" rel="noopener">https://jblevins.org/notes/smc-intro</a></li>
+<li><a href="https://www.cnblogs.com/yuyuanliu/p/15598250.html" target="_blank" rel="noopener">https://www.cnblogs.com/yuyuanliu/p/15598250.html</a></li>
+<li><a href="https://zhuanlan.zhihu.com/p/338438876" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/338438876</a></li>
+<li><a href="https://towardsdatascience.com/importance-sampling-introduction-e76b2c32e744" target="_blank" rel="noopener">https://towardsdatascience.com/importance-sampling-introduction-e76b2c32e744</a></li>
+</ul>
+
+                
+                <hr>
+                <!-- Pager -->
+                <ul class="pager">
+                    
+                    
+                    <li class="next">
+                        <a href="/2022/06/05/16/" data-toggle="tooltip" data-placement="top" title="Lasso and Ridge Regression">Next Post &rarr;</a>
+                    </li>
+                    
+                </ul>
+
+                <!-- tip start -->
+                
+
+                
+                <div class="comment_notes">
+                    <p>
+                        Copyright © Keyon Cheung 2022
+                    </p>
+                </div>
+                
+                <!-- tip end -->
+
+                <!-- Music start-->
+                
+                <!-- Music end -->
+
+                <!-- Sharing -->
+                
+                <div class="social-share"  data-wechat-qrcode-helper="" align="center"></div>
+                <!--  css & js -->
+                <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/css/share.min.css">
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/js/social-share.min.js"></script>
+                
+                <!-- Sharing -->
+
+                <!-- gitment start -->
+                
+                <!-- gitment end -->
+
+                <!-- 来必力City版安装代码 -->
+                
+                <!-- City版安装代码已完成 -->
+
+                <!-- disqus comment start -->
+                
+                <!-- disqus comment end -->
+            </div>
+            
+            <!-- Tabe of Content -->
+            <!-- Table of Contents -->
+
+    
+      
+        <aside id="sidebar">
+          <div id="toc" class="toc-article">
+          <strong class="toc-title">Contents</strong>
+          
+            
+              <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#Introduction"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">Introduction</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#Model"><span class="toc-nav-number">2.</span> <span class="toc-nav-text">Model</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#Monte-Carlo-Sampling"><span class="toc-nav-number">3.</span> <span class="toc-nav-text">Monte Carlo Sampling</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#Sequential-Importance-Sampling-and-Particle-Filter"><span class="toc-nav-number">4.</span> <span class="toc-nav-text">Sequential Importance Sampling and Particle Filter</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#Reference"><span class="toc-nav-number">5.</span> <span class="toc-nav-text">Reference</span></a></li></ol>
+            
+          
+          </div>
+        </aside>
+      
+    
+
+                
+            <!-- Sidebar Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                       
+                          <a class="tag" href="/tags/#Machine Learning" title="Machine Learning">Machine Learning</a>
+                        
+                    </div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+            </div>
+        </div>
+    </div>
+</article>
+
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script>
+    async("https://cdn.bootcss.com/anchor-js/1.1.1/anchor.min.js",function(){
+        anchors.options = {
+          visible: 'hover',
+          placement: 'left',
+          icon: 'ℬ'
+        };
+        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+    })
+</script>
+
+
+<style  type="text/css">
+    /* place left on bigger screen */
+    @media all and (min-width: 800px) {
+        .anchorjs-link{
+            position: absolute;
+            left: -0.75em;
+            font-size: 1.1em;
+            margin-top : -0.1em;
+        }
+    }
+</style>
+
+
+
+    <!-- Footer -->
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+
+                
+
+                
+
+                
+
+                
+
+                
+
+                
+
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; Keyon Cheung 2022 
+                    <br>
+                    Powered by 
+                    <a href="https://github.com/dusign/hexo-theme-snail" target="_blank" rel="noopener">
+                        <i>hexo-theme-snail</i>
+                    </a> | 
+                    <iframe name="star" style="margin-left: 2px; margin-bottom:-5px;" frameborder="0" scrolling="0"
+                        width="100px" height="20px"
+                        src="https://ghbtns.com/github-btn.html?user=dusign&repo=hexo-theme-snail&type=star&count=true">
+                    </iframe>
+                </p>
+            </div>
+        </div>
+    </div>
+
+</footer>
+
+<!-- jQuery -->
+
+<script src="/js/jquery.min.js"></script>
+
+
+<!-- Bootstrap Core JavaScript -->
+
+<script src="/js/bootstrap.min.js"></script>
+
+
+<!-- Custom Theme JavaScript -->
+
+<script src="/js/hux-blog.min.js"></script>
+
+
+<!-- Search -->
+
+<script src="/js/search.js"></script>
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("https://dusign.net/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("https://cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+<!-- Google Analytics -->
+
+
+<script>
+    // dynamic User by Hux
+    var _gaId = 'UA-XXXXXXXX-X';
+    var _gaDomain = 'yoursite';
+
+    // Originial
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', _gaId, _gaDomain);
+    ga('send', 'pageview');
+</script>
+
+
+
+
+<!-- Baidu Tongji -->
+
+
+<!-- Search -->
+
+    <script type="text/javascript">      
+        var search_path = "search.xml";
+        if (search_path.length == 0) {
+            search_path = "search.xml";
+        }
+    var path = "/" + search_path;
+    searchFunc(path, 'local-search-input', 'local-search-result');
+    </script>
+
+
+<!-- busuanzi -->
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+
+	<a id="rocket" href="#top" class=""></a>
+	<script type="text/javascript" src="/js/totop.js?v=1.0.0" async=""></script>
+    <script type="text/javascript" src="/js/toc.js?v=1.0.0" async=""></script>
+
+    
+        <!-- background effects line -->
+        
+
+        
+
+        <!-- background effects end -->
+    
+
+    <!--<script size="50" alpha='0.3' zIndex="-999" src="/js/ribbonStatic.js"></script>-->
+    
+        <script src="/js/ribbonDynamic.js"></script>
+    
+</body>
+
+</html>

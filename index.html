@@ -1,0 +1,977 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="baidu-site-verification" content="093lY4ziMu" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="description" content="Welcome">
+    <meta name="keyword"  content="keyon">
+    <link rel="shortcut icon" href="/img/ironman-draw.png">
+    <!-- Place this tag in your head or just before your close body tag. -->
+    <script async defer src="https://buttons.github.io/buttons.js"></script>
+    <!--<link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>-->
+    <title>
+        
+          Keyon&#39;s Blog
+        
+    </title>
+
+    <link rel="canonical" href="https://dusign.net/">
+
+    <!-- Bootstrap Core CSS -->
+    
+<link rel="stylesheet" href="/css/bootstrap.min.css">
+
+
+    <!-- Custom CSS --> 
+    
+        
+<link rel="stylesheet" href="/css/dusign-light.css">
+
+        
+<link rel="stylesheet" href="/css/dusign-common-light.css">
+
+        
+<link rel="stylesheet" href="/css/font-awesome.css">
+
+        
+<link rel="stylesheet" href="/css/toc.css">
+
+        <!-- background effects end -->
+    
+    
+    <!-- Pygments Highlight CSS -->
+    
+<link rel="stylesheet" href="/css/highlight.css">
+
+
+    
+<link rel="stylesheet" href="/css/widget.css">
+
+
+    
+<link rel="stylesheet" href="/css/rocket.css">
+
+
+    
+<link rel="stylesheet" href="/css/signature.css">
+
+
+    
+<link rel="stylesheet" href="/css/fonts.googleapis.css">
+
+
+    <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.3.0/css/font-awesome.min.css">
+
+    <!-- photography -->
+    
+<link rel="stylesheet" href="/css/photography.css">
+
+
+    <!-- ga & ba script hoook -->
+    <script></script>
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="">
+
+    <!-- background effects start -->
+    
+    <!-- background effects end -->
+
+	<!-- Modified by Yu-Hsuan Yen -->
+<!-- Post Header -->
+<style type="text/css">
+    header.intro-header{
+        
+            
+                background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url('/img/header_img/me.jpg') 
+                /*config*/
+            
+        
+    }
+    
+</style>
+
+<header class="intro-header" >
+    <!-- Signature -->
+    <div id="signature">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                
+                    <div class="site-heading">
+                        <h1>Keyon Cheung</h1>
+                        <!--<hr class="small">-->
+                        <span id="subdusi" class="subheading">The future has taken root in the present.</span>
+                    </div>
+                
+
+                </div>
+            </div>
+        </div>      
+    </div>
+
+    
+    <div class="waveWrapper">
+        <div class="wave wave_before" style="background-image: url('/img/wave-light.png')"></div>
+        <div class="wave wave_after" style="background-image: url('/img/wave-light.png')"></div>
+    </div>
+    
+</header>
+
+	
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">Keyon Cheung</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+
+                    
+
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/about/">About</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/archive/">Archives</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/photography/">Photography</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/tags/">Tags</a>
+                        </li>
+                        
+                    
+                    
+                    
+                </ul>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+    <!-- Main Content -->
+    <!-- Main Content -->
+<div class="container">
+    <div class="row" style="margin: 1em 0">
+        
+
+    <!-- Post Container -->
+            <div class="
+                col-lg-8 col-lg-offset-1
+                col-md-8 col-md-offset-1
+                col-sm-12
+                col-xs-12
+                post-container
+            ">
+                <!-- Top -->
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+
+
+<!-- Main Content -->
+
+    
+
+        <div class="post-preview">
+
+            <a href="/2022/08/02/17/">
+                <h2 class="post-title">
+                    Sequential Monte Carlo
+                </h2>
+                <h3 class="post-subtitle">
+                    
+                </h3>
+                <div class="post-content-preview">
+                    IntroductionLots of real-world data analysis efforts often include estimating the unknown data from a limited number of given observations. From a Bayesian perspective, one must use a prior distrib......
+                </div>
+            </a>
+            
+                <p class="post-meta" style="margin: 10px 0;">
+                    Posted by Keyon Cheung on
+                    2022-08-02
+                </p>
+                <div class="tags">
+                    
+                      <a href="/tags/#Machine Learning" title="Machine Learning">Machine Learning</a>
+                    
+                </div>
+            
+
+        </div>
+        <hr>
+
+    
+
+    
+
+        <div class="post-preview">
+
+            <a href="/2022/06/05/16/">
+                <h2 class="post-title">
+                    Lasso and Ridge Regression
+                </h2>
+                <h3 class="post-subtitle">
+                    
+                </h3>
+                <div class="post-content-preview">
+                    From now on, some of my new blogs will be written in English in order to improve my essay writing ability. There may exist some grammatical or expression mistakes. Any suggestions and corrections a......
+                </div>
+            </a>
+            
+                <p class="post-meta" style="margin: 10px 0;">
+                    Posted by Keyon Cheung on
+                    2022-06-05
+                </p>
+                <div class="tags">
+                    
+                      <a href="/tags/#Machine Learning" title="Machine Learning">Machine Learning</a>
+                    
+                </div>
+            
+
+        </div>
+        <hr>
+
+    
+
+    
+
+        <div class="post-preview">
+
+            <a href="/2022/05/29/15/">
+                <h2 class="post-title">
+                    华为数通软件开发实习技术面
+                </h2>
+                <h3 class="post-subtitle">
+                    
+                </h3>
+                <div class="post-content-preview">
+                    前几天面试了华为数通部门的通用软件开发实习生，总结了面试经验，若侵权请联系删除。
+
+面试官首先介绍了面试流程：
+
+第一部分是自我介绍和项目介绍
+第二部分是计算机基础考察
+第三部分是笔试复盘 + 手撕一道题
+
+
+介绍项目（我用了大概20分钟，面试官问了一些细节和问题）
+
+面试官：你觉得你的项目的难点是什么？你怎么看待现在很火的人工智能和深度学习？（我的项目之一是深度学习相关的）你提到了 Git......
+                </div>
+            </a>
+            
+                <p class="post-meta" style="margin: 10px 0;">
+                    Posted by Keyon Cheung on
+                    2022-05-29
+                </p>
+                <div class="tags">
+                    
+                      <a href="/tags/#Life" title="Life">Life</a>
+                    
+                      <a href="/tags/#Experience" title="Experience">Experience</a>
+                    
+                      <a href="/tags/#C++" title="C++">C++</a>
+                    
+                </div>
+            
+
+        </div>
+        <hr>
+
+    
+
+    
+
+        <div class="post-preview">
+
+            <a href="/2022/05/17/14/">
+                <h2 class="post-title">
+                    C++复习笔记#1：static与类型转换
+                </h2>
+                <h3 class="post-subtitle">
+                    
+                </h3>
+                <div class="post-content-preview">
+                    本篇为 C++ 相关知识的复习笔记第一篇。
+
+static 关键字static 是 C/C++ 中很常用的修饰符，它被用来控制变量的存储方式和可见性。
+在函数内部定义的变量的内存空间是编译器为它在栈上分配的，而函数执行结束时会释放掉。如果想将函数中此变量的值保存至下一次调用时，可以将其定义为全局的变量，但定义一个全局变量有许多缺点，例如破坏了此变量的访问范围。static 关键字则可以很好的......
+                </div>
+            </a>
+            
+                <p class="post-meta" style="margin: 10px 0;">
+                    Posted by Keyon Cheung on
+                    2022-05-17
+                </p>
+                <div class="tags">
+                    
+                      <a href="/tags/#Development" title="Development">Development</a>
+                    
+                      <a href="/tags/#C++" title="C++">C++</a>
+                    
+                </div>
+            
+
+        </div>
+        <hr>
+
+    
+
+    
+
+        <div class="post-preview">
+
+            <a href="/2022/05/11/13/">
+                <h2 class="post-title">
+                    浅析xv6操作系统进程相关源码
+                </h2>
+                <h3 class="post-subtitle">
+                    
+                </h3>
+                <div class="post-content-preview">
+                    
+Xv6 is a teaching operating system developed in the summer of 2006 for MIT’s operating systems course, 6.828: Operating System Engineering. 
+For many years, MIT had no operating systems course. In......
+                </div>
+            </a>
+            
+                <p class="post-meta" style="margin: 10px 0;">
+                    Posted by Keyon Cheung on
+                    2022-05-11
+                </p>
+                <div class="tags">
+                    
+                      <a href="/tags/#Development" title="Development">Development</a>
+                    
+                      <a href="/tags/#OS" title="OS">OS</a>
+                    
+                </div>
+            
+
+        </div>
+        <hr>
+
+    
+
+    
+
+        <div class="post-preview">
+
+            <a href="/2022/05/04/12/">
+                <h2 class="post-title">
+                    TCP三次握手和四次挥手
+                </h2>
+                <h3 class="post-subtitle">
+                    
+                </h3>
+                <div class="post-content-preview">
+                    这是一篇关于计算机网络的复习笔记。
+UDP 和 TCPUDP 全程为 User Datagram Protocol，即用户数据报协议。UDP 传送数据是不需要建立连接的，所以其不提供可靠交付，但是因为使用资源较少，往往更有效率，延时更低，适用于直播、视频聊天、游戏等网络服务。
+TCP 全称为 Transmission Control Protocol，即传输控制协议。听名字就可以知道，TCP......
+                </div>
+            </a>
+            
+                <p class="post-meta" style="margin: 10px 0;">
+                    Posted by Keyon Cheung on
+                    2022-05-04
+                </p>
+                <div class="tags">
+                    
+                      <a href="/tags/#Development" title="Development">Development</a>
+                    
+                      <a href="/tags/#Network" title="Network">Network</a>
+                    
+                </div>
+            
+
+        </div>
+        <hr>
+
+    
+
+    
+
+        <div class="post-preview">
+
+            <a href="/2022/04/28/11/">
+                <h2 class="post-title">
+                    托福阅读30分之路：专注性和目的性
+                </h2>
+                <h3 class="post-subtitle">
+                    
+                </h3>
+                <div class="post-content-preview">
+                    四月底的二番战托福，我遇上了最讨厌的阅读加试，做到第四篇感觉整个人的注意力都要涣散了。好巧不巧，这次阅读竟然满分了。
+从一开始的做一篇文章要半小时，到卡在20多分的瓶颈动弹不得，再到打通任督二脉稳定28分，我算是找到了一套托福阅读做题思路。坦白来讲，我自己也未曾设想第一次的满分不是在 TPO，而是花了 2100 大洋的真枪实弹。趁热打铁，借此机会我来分享一下我的心得。
+Thus, from ......
+                </div>
+            </a>
+            
+                <p class="post-meta" style="margin: 10px 0;">
+                    Posted by Keyon Cheung on
+                    2022-04-28
+                </p>
+                <div class="tags">
+                    
+                      <a href="/tags/#Experience" title="Experience">Experience</a>
+                    
+                </div>
+            
+
+        </div>
+        <hr>
+
+    
+
+    
+
+        <div class="post-preview">
+
+            <a href="/2022/04/11/10/">
+                <h2 class="post-title">
+                    时间、相遇和新海诚电影
+                </h2>
+                <h3 class="post-subtitle">
+                    
+                </h3>
+                <div class="post-content-preview">
+                    一个月前——这个时间被我改了又改，因为影评写了很久——2022年3月10日28点，我才抱着激动地心情完成了新海诚 2016 年的《你的名字》的观影。我在空无一人的宿舍里关上了所有可能的光源，泡好了小时候最爱的粉色小碗泡面，从隔壁宿舍拿来了一瓶旺仔牛奶，接上了我仅有的两个音响。整个层楼只有四个人在校，我可以放心大声外放。
+新海诚的电影非常对我的胃口——《你的名字》的叙事节奏和视听体验实在太好，......
+                </div>
+            </a>
+            
+                <p class="post-meta" style="margin: 10px 0;">
+                    Posted by Keyon Cheung on
+                    2022-04-11
+                </p>
+                <div class="tags">
+                    
+                      <a href="/tags/#Life" title="Life">Life</a>
+                    
+                      <a href="/tags/#Film Review" title="Film Review">Film Review</a>
+                    
+                </div>
+            
+
+        </div>
+        <hr>
+
+    
+
+    
+
+        <div class="post-preview">
+
+            <a href="/2022/01/21/9/">
+                <h2 class="post-title">
+                    Flutter开发日记#1：上手第一个app
+                </h2>
+                <h3 class="post-subtitle">
+                    
+                </h3>
+                <div class="post-content-preview">
+                    笔者的话开发一个移动应用对我来说一直是一件直观而有成就感的事。相比桌面级应用，移动客户端的开发更能体现最前沿的交互&amp;平面设计。作为前端的初学者，我在几个月前才学习了 H5、CSS 和 JS，并接触了 Vue.js和uni-app框架，完成了一个简单的微信小程序框架搭建（也就是 AL 的小程序）。
+紧接着，我就看到了腾讯微信移动客户端的实习招聘，其中就有着Flutter的要求。为此，我......
+                </div>
+            </a>
+            
+                <p class="post-meta" style="margin: 10px 0;">
+                    Posted by Keyon Cheung on
+                    2022-01-21
+                </p>
+                <div class="tags">
+                    
+                      <a href="/tags/#Development" title="Development">Development</a>
+                    
+                      <a href="/tags/#Flutter" title="Flutter">Flutter</a>
+                    
+                </div>
+            
+
+        </div>
+        <hr>
+
+    
+
+    
+
+        <div class="post-preview">
+
+            <a href="/2021/12/18/8/">
+                <h2 class="post-title">
+                    人生没有准备好
+                </h2>
+                <h3 class="post-subtitle">
+                    
+                </h3>
+                <div class="post-content-preview">
+                    不想逃避自从大一逃避了一次“麻烦”的录视频转专业后，我的大学头两年的学习生涯并不好过：和自己完全不喜欢的知识虚度光阴，说服自己“自动化”也是个不错的专业，抑或是把锅强加给所谓的COVID-19大流行，我很早就明白CS才是我应该学的专业。
+我连着逃避了两次——先是前者的懒惰，然后是在大一的转专业时的自负而胆怯，认为所谓考研也可以学计算机，一次又一次地尝试说服自己，然后忘记这些去投入电脑游戏。当......
+                </div>
+            </a>
+            
+                <p class="post-meta" style="margin: 10px 0;">
+                    Posted by Keyon Cheung on
+                    2021-12-18
+                </p>
+                <div class="tags">
+                    
+                      <a href="/tags/#Life" title="Life">Life</a>
+                    
+                </div>
+            
+
+        </div>
+        <hr>
+
+    
+
+
+
+<!-- Pager -->
+
+<ul class="pager">
+    
+    
+        <li class="next">
+            <a href="/archives/2/">Older Posts &rarr;</a>
+        </li>
+    
+</ul>
+
+
+            </div>
+
+            <!-- Sidebar Container -->
+<div class="
+    col-lg-3 col-lg-offset-0
+    col-md-3 col-md-offset-0
+    col-sm-12
+    col-xs-12
+    sidebar-container
+">
+    
+        
+<!--
+<h5>SEARCH</h5>
+<div class="search-article" class="tags">
+	<input id="search-kw" type="text" name="search_article" placeholder="Enter keywords for search" />
+	<div class="search-img">
+		<img 
+			src="/img/search.png" 
+			alt="search" 
+			onMouseOver="this.src='/img/search-focus.png'" 
+			onMouseOut="this.src='/img/search.png'"/>
+	</div>
+</div>-->
+
+<h5>SEARCH</h5>
+<div id="site_search">
+	<div class="form-group">
+		<input type="text" id="local-search-input" name="q" results="0" placeholder="search" class="st-search-input st-default-search-input form-control"/>
+	</div>  
+	<div id="local-search-result"></div>
+</div>
+
+        <hr>
+    
+        <!-- Featured Tags -->
+
+<section>
+    <!-- no hr -->
+    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+    <div class="tags">
+        
+            
+            <a href="/tags/#Life" title="Life" rel="5">Life</a>
+            
+        
+            
+            <a href="/tags/#Experience" title="Experience" rel="4">Experience</a>
+            
+        
+            
+            <a href="/tags/#Deep Learning" title="Deep Learning" rel="1">Deep Learning</a>
+            
+        
+            
+            <a href="/tags/#Computer Vision" title="Computer Vision" rel="1">Computer Vision</a>
+            
+        
+            
+            <a href="/tags/#Machine Learning" title="Machine Learning" rel="3">Machine Learning</a>
+            
+        
+            
+            <a href="/tags/#Film Review" title="Film Review" rel="1">Film Review</a>
+            
+        
+            
+            <a href="/tags/#Development" title="Development" rel="4">Development</a>
+            
+        
+            
+            <a href="/tags/#Flutter" title="Flutter" rel="1">Flutter</a>
+            
+        
+            
+            <a href="/tags/#Network" title="Network" rel="1">Network</a>
+            
+        
+            
+            <a href="/tags/#OS" title="OS" rel="1">OS</a>
+            
+        
+            
+            <a href="/tags/#C++" title="C++" rel="2">C++</a>
+            
+        
+    </div>
+</section>
+
+        <hr>
+    
+        <!-- Short About -->
+<section class="visible-md visible-lg">
+    <h5><a href="/about/">ABOUT ME</a></h5>
+    <div class="short-about">
+
+        
+            <img id = "avatar_pic" src="/img/kc1.png" />
+        
+
+        
+            <p>Senior in SZU. Massive interests in football &amp; games &amp; movies.</p>
+        
+
+        <!-- SNS Link -->
+        <ul class="list-inline">
+
+            
+
+            
+
+            
+
+            
+
+            
+
+            
+
+            
+
+        </ul>
+    </div>
+</section>
+        <hr>
+    
+        
+  <h5>RECENT POSTS</h5>
+  <div class="widget">
+    <ul>
+      
+        <li>
+          <a href="/2022/08/02/17/">Sequential Monte Carlo</a>
+        </li>
+      
+        <li>
+          <a href="/2022/06/05/16/">Lasso and Ridge Regression</a>
+        </li>
+      
+        <li>
+          <a href="/2022/05/29/15/">华为数通软件开发实习技术面</a>
+        </li>
+      
+        <li>
+          <a href="/2022/05/17/14/">C++复习笔记#1：static与类型转换</a>
+        </li>
+      
+        <li>
+          <a href="/2022/05/11/13/">浅析xv6操作系统进程相关源码</a>
+        </li>
+      
+    </ul>
+  </div>
+
+        <hr>
+    
+        
+    <h5>ARCHIVES</h5>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/08/">August 2022</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/06/">June 2022</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/05/">May 2022</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/04/">April 2022</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/01/">January 2022</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/12/">December 2021</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/11/">November 2021</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/07/">July 2021</a><span class="archive-list-count">3</span></li></ul>
+    </div>
+
+        <hr>
+    
+</div>
+
+        
+    </div>
+</div>
+
+
+    <!-- Footer -->
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+
+                
+
+                
+
+                
+
+                
+
+                
+
+                
+
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; Keyon Cheung 2022 
+                    <br>
+                    Powered by 
+                    <a href="https://github.com/dusign/hexo-theme-snail" target="_blank" rel="noopener">
+                        <i>hexo-theme-snail</i>
+                    </a> | 
+                    <iframe name="star" style="margin-left: 2px; margin-bottom:-5px;" frameborder="0" scrolling="0"
+                        width="100px" height="20px"
+                        src="https://ghbtns.com/github-btn.html?user=dusign&repo=hexo-theme-snail&type=star&count=true">
+                    </iframe>
+                </p>
+            </div>
+        </div>
+    </div>
+
+</footer>
+
+<!-- jQuery -->
+
+<script src="/js/jquery.min.js"></script>
+
+
+<!-- Bootstrap Core JavaScript -->
+
+<script src="/js/bootstrap.min.js"></script>
+
+
+<!-- Custom Theme JavaScript -->
+
+<script src="/js/hux-blog.min.js"></script>
+
+
+<!-- Search -->
+
+<script src="/js/search.js"></script>
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("https://dusign.net/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("https://cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+<!-- Google Analytics -->
+
+
+<script>
+    // dynamic User by Hux
+    var _gaId = 'UA-XXXXXXXX-X';
+    var _gaDomain = 'yoursite';
+
+    // Originial
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', _gaId, _gaDomain);
+    ga('send', 'pageview');
+</script>
+
+
+
+
+<!-- Baidu Tongji -->
+
+
+<!-- Search -->
+
+    <script type="text/javascript">      
+        var search_path = "search.xml";
+        if (search_path.length == 0) {
+            search_path = "search.xml";
+        }
+    var path = "/" + search_path;
+    searchFunc(path, 'local-search-input', 'local-search-result');
+    </script>
+
+
+<!-- busuanzi -->
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+
+	<a id="rocket" href="#top" class=""></a>
+	<script type="text/javascript" src="/js/totop.js?v=1.0.0" async=""></script>
+    <script type="text/javascript" src="/js/toc.js?v=1.0.0" async=""></script>
+
+    
+        <!-- background effects line -->
+        
+
+        
+
+        <!-- background effects end -->
+    
+
+    <!--<script size="50" alpha='0.3' zIndex="-999" src="/js/ribbonStatic.js"></script>-->
+    
+        <script src="/js/ribbonDynamic.js"></script>
+    
+</body>
+
+</html>

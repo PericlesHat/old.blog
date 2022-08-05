@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="baidu-site-verification" content="093lY4ziMu" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="description" content="Welcome">
+    <meta name="keyword"  content="keyon">
+    <link rel="shortcut icon" href="/img/ironman-draw.png">
+    <!-- Place this tag in your head or just before your close body tag. -->
+    <script async defer src="https://buttons.github.io/buttons.js"></script>
+    <!--<link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>-->
+    <title>
+        
+          C++复习笔记#1：static与类型转换 - Keyon&#39;s Blog
+        
+    </title>
+
+    <link rel="canonical" href="https://dusign.net/2022/05/17/14/">
+
+    <!-- Bootstrap Core CSS -->
+    
+<link rel="stylesheet" href="/css/bootstrap.min.css">
+
+
+    <!-- Custom CSS --> 
+    
+        
+<link rel="stylesheet" href="/css/dusign-light.css">
+
+        
+<link rel="stylesheet" href="/css/dusign-common-light.css">
+
+        
+<link rel="stylesheet" href="/css/font-awesome.css">
+
+        
+<link rel="stylesheet" href="/css/toc.css">
+
+        <!-- background effects end -->
+    
+    
+    <!-- Pygments Highlight CSS -->
+    
+<link rel="stylesheet" href="/css/highlight.css">
+
+
+    
+<link rel="stylesheet" href="/css/widget.css">
+
+
+    
+<link rel="stylesheet" href="/css/rocket.css">
+
+
+    
+<link rel="stylesheet" href="/css/signature.css">
+
+
+    
+<link rel="stylesheet" href="/css/fonts.googleapis.css">
+
+
+    <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.3.0/css/font-awesome.min.css">
+
+    <!-- photography -->
+    
+<link rel="stylesheet" href="/css/photography.css">
+
+
+    <!-- ga & ba script hoook -->
+    <script></script>
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="">
+
+    <!-- background effects start -->
+    
+    <!-- background effects end -->
+
+	<!-- Modified by Yu-Hsuan Yen -->
+<!-- Post Header -->
+<style type="text/css">
+    header.intro-header{
+        
+            
+                background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url('../../../../img/nld.jpg')
+                /*post*/
+            
+        
+    }
+    
+</style>
+
+<header class="intro-header" >
+    <!-- Signature -->
+    <div id="signature">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                
+                    <div class="post-heading">
+                        <div class="tags">
+                            
+                              <a class="tag" href="/tags/#Development" title="Development">Development</a>
+                            
+                              <a class="tag" href="/tags/#C++" title="C++">C++</a>
+                            
+                        </div>
+                        <h1>C++复习笔记#1：static与类型转换</h1>
+                        <h2 class="subheading"></h2>
+                        <span class="meta">
+                            Posted by Keyon Cheung on
+                            2022-05-17
+                        </span>
+
+                        
+                            <div class="blank_box"></div>
+                            <span class="meta">
+                                Words <span class="post-count">1.5k</span> and
+                                Reading Time <span class="post-count">5</span> Minutes
+                            </span>
+                            <div class="blank_box"></div>
+                            <!-- 不蒜子统计 start -->
+                            <span class="meta">
+                                Viewed <span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span> Times
+                            </span>
+                            <!-- 不蒜子统计 end -->
+                        
+
+                    </div>
+                
+
+                </div>
+            </div>
+        </div>      
+    </div>
+
+    
+    <div class="waveWrapper">
+        <div class="wave wave_before" style="background-image: url('/img/wave-light.png')"></div>
+        <div class="wave wave_after" style="background-image: url('/img/wave-light.png')"></div>
+    </div>
+    
+</header>
+
+	
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">Keyon Cheung</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+
+                    
+
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/about/">About</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/archive/">Archives</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/photography/">Photography</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/tags/">Tags</a>
+                        </li>
+                        
+                    
+                    
+                    
+                </ul>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+    <!-- Main Content -->
+    <!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row" style="margin: 1em 0">
+
+            <!-- Post Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                <p>本篇为 C++ 相关知识的复习笔记第一篇。</p>
+<hr>
+<h2 id="static-关键字"><a href="#static-关键字" class="headerlink" title="static 关键字"></a>static 关键字</h2><p>static 是 C/C++ 中很常用的修饰符，它被用来控制变量的存储方式和可见性。</p>
+<p>在函数内部定义的变量的内存空间是编译器为它在栈上分配的，而函数执行结束时会释放掉。如果想将函数中此变量的值保存至下一次调用时，可以将其定义为全局的变量，但定义一个全局变量有许多缺点，例如破坏了此变量的访问范围。static 关键字则可以很好的解决这个问题。</p>
+<h3 id="全局-static-变量"><a href="#全局-static-变量" class="headerlink" title="全局 static 变量"></a>全局 static 变量</h3><p><strong>存储位置</strong>：静态存储区，在程序运行期间一直存在</p>
+<p><strong>初始化</strong>： 未手动初始化的变量自动初始化为 0</p>
+<p><strong>作用域</strong>： 从定义之处开始，到文件结束，仅能在本文件中使用</p>
+<h3 id="局部-static-变量"><a href="#局部-static-变量" class="headerlink" title="局部 static 变量"></a>局部 static 变量</h3><p><strong>存储位置</strong>：静态存储区，在程序运行期间一直存在</p>
+<p><strong>初始化</strong>： 未手动初始化的变量自动初始化为 0</p>
+<p><strong>作用域</strong>： 为局部作用域， 当函数或语句块结束，静态变量仍然存在于内存区，再次调用函数或进入语句块时，可以再次被访问，且值保持不变</p>
+<h3 id="static-函数"><a href="#static-函数" class="headerlink" title="static 函数"></a>static 函数</h3><p>静态函数只在声明他的文件内可见，无法被其他文件使用，若想在其他文件服用复用函数，最好把它写在头文件中，否则一般加 static 关键字。</p>
+<h3 id="类的-static-成员变量-amp-static-成员函数"><a href="#类的-static-成员变量-amp-static-成员函数" class="headerlink" title="类的 static 成员变量 &amp; static 成员函数"></a>类的 static 成员变量 &amp; static 成员函数</h3><p>类的静态成员不属于任何一个类，可以在对象间共享，对于多个对象来说， 静态成员存储于一处，供所有对象访问，对静态函数/静态成员的访问不需要使用对象名。</p>
+<p>类的<strong>静态函数</strong>不能直接引用类的非静态成员，也不能调用非静态成员函数。</p>
+<h3 id="static-的作用"><a href="#static-的作用" class="headerlink" title="static 的作用"></a>static 的作用</h3><ol>
+<li><p><strong>隐藏</strong>，当 static 修饰变量的时候，能够将变量或函数对本文件外的文件进行隐藏，无法在其他文件中访问（即便是 extern 外部声明也不可以）。</p>
+</li>
+<li><p><strong>初始化</strong>，静态存储区分为 <code>DATA</code> 段和 <code>BSS</code> 段，<code>DATA</code> 段存放已经初始化了的全局变量，<code>BSS</code> 段存放未初始化的全局变量和静态变量，在程序执行前，<code>BSS</code> 段会被清零，从而所有静态变量都被初始化为 0。</p>
+</li>
+<li><p><strong>延长变量的生命周期</strong>，若想延长一个变量的生命周期，可以把它声明为 static，直到程序运行结束以后才释放</p>
+</li>
+</ol>
+<hr>
+<h2 id="四种强制类型转换"><a href="#四种强制类型转换" class="headerlink" title="四种强制类型转换"></a>四种强制类型转换</h2><p>C++不是类型安全的。C++的四种强制类型转换，分别为：<code>static_cast</code> , <code>dynamic_cast</code> , <code>const_cast</code> , <code>reinterpret_cast</code>。新类型的强制转换可以提供更好的控制强制转换过程，允许控制各种不同种类的强制转换。</p>
+<h3 id="隐式类型转换"><a href="#隐式类型转换" class="headerlink" title="隐式类型转换"></a>隐式类型转换</h3><p>在下面这些情况下，编译器会自动地转换运算对象的类型：</p>
+<ul>
+<li>比 int 类型小的整型值首先提升为较大的整数类型</li>
+<li>在条件中，非布尔值转换为布尔类型</li>
+<li>初始化过程中，初始值转换成变量的类型</li>
+<li>在赋值语句中，右侧运算对象转换成左侧运算对象的类型</li>
+<li>如果算术运算或关系运算的运算对象有多种类型，需要转换成同一种类型</li>
+<li>数组和指针的转换</li>
+<li>指针之间的转换</li>
+<li>转换成布尔类型</li>
+<li>转换成常量（如函数参数中的 const）</li>
+<li>类类型转换</li>
+</ul>
+<h3 id="显式类型转换"><a href="#显式类型转换" class="headerlink" title="显式类型转换"></a>显式类型转换</h3><h4 id="static-cast"><a href="#static-cast" class="headerlink" title="static_cast"></a>static_cast</h4><p>用法：static_cast &lt; type-id &gt; ( expression )</p>
+<p>该运算符把 expression 转换为 type-id 类型，但没有运行时类型检查来保证转换的安全性。可以用于任何有明确定义的类型转换，只要<strong>不包含底层 const</strong>， 都可以使用 <code>static_cast</code>。</p>
+<h4 id="dynamic-cast"><a href="#dynamic-cast" class="headerlink" title="dynamic_cast"></a>dynamic_cast</h4><p>用法：dynamic_cast &lt; type-id &gt; ( expression )</p>
+<p>该运算符把 expression 转换成 type-id 类型的对象。type-id 必须是类的指针、类的引用或者void *。如果 type-id 是类指针类型，那么 expression 也必须是一个指针；如果 type-id 是一个引用，那么 expression 也必须是一个引用。</p>
+<p>这是一种动态类型转换，一般用于含有<strong>虚函数</strong>的类，用于类层次间的向下或向上转化，只能转化指针或者引用。为什么需要 <code>dynamic_cast</code> 强制转换？简单的说，当无法使用虚函数的时候。</p>
+<p>其他三种转换都是编译时完成的，<code>dynamic_cast</code> 是运行时处理的，<strong>运行时要进行类型检查（下行转换）</strong>。使用 <code>dynamic_cast</code> 进行转换的，基类中一定要有虚函数，否则编译不通过。</p>
+<p>需要检测有虚函数的原因：类中存在虚函数，就说明它有想要让基类指针或引用指向派生类对象的情况，此时转换才有意义。 </p>
+<h4 id="reinpreter-cast"><a href="#reinpreter-cast" class="headerlink" title="reinpreter_cast"></a>reinpreter_cast</h4><p>用法：reinpreter_cast &lt; type-id &gt; (expression)</p>
+<p>type-id 必须是一个指针、引用、算术类型、函数指针或者成员指针。<strong>它可以转化任何内置的数据类型为其他任何的数据类型</strong>。从运算对象底层的位模式提供低层次上的重新解释，不建议使用，若使用必须对涉及的类型和编译器的转换过程都十分了解。</p>
+<h4 id="const-cast"><a href="#const-cast" class="headerlink" title="const_cast"></a>const_cast</h4><p>用法：const_cast &lt; type-id &gt; (expression)</p>
+<p>该运算符用来<strong>修改类型的 const 或 volatile 属性</strong>。</p>
+<p>volatile：用于 C/C++ 中，意在阻止编译器对其修饰对象进行任何形式的优化。常用于多线程，因为线程是异步运行的，每个线程导致的全局变量的每次更新，都应该被其他线程重新从内存中获取。为了消除编译器优化导致的效果，这些全局变量必须要用 <code>volatile</code> 修饰。</p>
+<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><p><a href="https://www.nowcoder.com/discuss/640457?channel=-1&amp;source_id=profile_follow_post_nctrack" target="_blank" rel="noopener">https://www.nowcoder.com/discuss/640457?channel=-1&amp;source_id=profile_follow_post_nctrack</a></p>
+<p><a href="https://blog.csdn.net/LoseInVain/article/details/103356324" target="_blank" rel="noopener">https://blog.csdn.net/LoseInVain/article/details/103356324</a></p>
+<p><a href="https://blog.csdn.net/daaikuaichuan/article/details/79476501" target="_blank" rel="noopener">https://blog.csdn.net/daaikuaichuan/article/details/79476501</a></p>
+
+                
+                <hr>
+                <!-- Pager -->
+                <ul class="pager">
+                    
+                    <li class="previous">
+                        <a href="/2022/05/29/15/" data-toggle="tooltip" data-placement="top" title="华为数通软件开发实习技术面">&larr; Previous Post</a>
+                    </li>
+                    
+                    
+                    <li class="next">
+                        <a href="/2022/05/11/13/" data-toggle="tooltip" data-placement="top" title="浅析xv6操作系统进程相关源码">Next Post &rarr;</a>
+                    </li>
+                    
+                </ul>
+
+                <!-- tip start -->
+                
+
+                
+                <div class="comment_notes">
+                    <p>
+                        Copyright © Keyon Cheung 2022
+                    </p>
+                </div>
+                
+                <!-- tip end -->
+
+                <!-- Music start-->
+                
+                <!-- Music end -->
+
+                <!-- Sharing -->
+                
+                <div class="social-share"  data-wechat-qrcode-helper="" align="center"></div>
+                <!--  css & js -->
+                <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/css/share.min.css">
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/js/social-share.min.js"></script>
+                
+                <!-- Sharing -->
+
+                <!-- gitment start -->
+                
+                <!-- gitment end -->
+
+                <!-- 来必力City版安装代码 -->
+                
+                <!-- City版安装代码已完成 -->
+
+                <!-- disqus comment start -->
+                
+                <!-- disqus comment end -->
+            </div>
+            
+            <!-- Tabe of Content -->
+            <!-- Table of Contents -->
+
+    
+      
+        <aside id="sidebar">
+          <div id="toc" class="toc-article">
+          <strong class="toc-title">Contents</strong>
+          
+            
+              <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#static-关键字"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">static 关键字</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#全局-static-变量"><span class="toc-nav-number">1.1.</span> <span class="toc-nav-text">全局 static 变量</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#局部-static-变量"><span class="toc-nav-number">1.2.</span> <span class="toc-nav-text">局部 static 变量</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#static-函数"><span class="toc-nav-number">1.3.</span> <span class="toc-nav-text">static 函数</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#类的-static-成员变量-amp-static-成员函数"><span class="toc-nav-number">1.4.</span> <span class="toc-nav-text">类的 static 成员变量 &amp; static 成员函数</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#static-的作用"><span class="toc-nav-number">1.5.</span> <span class="toc-nav-text">static 的作用</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#四种强制类型转换"><span class="toc-nav-number">2.</span> <span class="toc-nav-text">四种强制类型转换</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#隐式类型转换"><span class="toc-nav-number">2.1.</span> <span class="toc-nav-text">隐式类型转换</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#显式类型转换"><span class="toc-nav-number">2.2.</span> <span class="toc-nav-text">显式类型转换</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#static-cast"><span class="toc-nav-number">2.2.1.</span> <span class="toc-nav-text">static_cast</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#dynamic-cast"><span class="toc-nav-number">2.2.2.</span> <span class="toc-nav-text">dynamic_cast</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#reinpreter-cast"><span class="toc-nav-number">2.2.3.</span> <span class="toc-nav-text">reinpreter_cast</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#const-cast"><span class="toc-nav-number">2.2.4.</span> <span class="toc-nav-text">const_cast</span></a></li></ol></li></ol></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#Reference"><span class="toc-nav-number">3.</span> <span class="toc-nav-text">Reference</span></a></li></ol>
+            
+          
+          </div>
+        </aside>
+      
+    
+
+                
+            <!-- Sidebar Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                       
+                          <a class="tag" href="/tags/#Development" title="Development">Development</a>
+                        
+                          <a class="tag" href="/tags/#C++" title="C++">C++</a>
+                        
+                    </div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+            </div>
+        </div>
+    </div>
+</article>
+
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script>
+    async("https://cdn.bootcss.com/anchor-js/1.1.1/anchor.min.js",function(){
+        anchors.options = {
+          visible: 'hover',
+          placement: 'left',
+          icon: 'ℬ'
+        };
+        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+    })
+</script>
+
+
+<style  type="text/css">
+    /* place left on bigger screen */
+    @media all and (min-width: 800px) {
+        .anchorjs-link{
+            position: absolute;
+            left: -0.75em;
+            font-size: 1.1em;
+            margin-top : -0.1em;
+        }
+    }
+</style>
+
+
+
+    <!-- Footer -->
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+
+                
+
+                
+
+                
+
+                
+
+                
+
+                
+
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; Keyon Cheung 2022 
+                    <br>
+                    Powered by 
+                    <a href="https://github.com/dusign/hexo-theme-snail" target="_blank" rel="noopener">
+                        <i>hexo-theme-snail</i>
+                    </a> | 
+                    <iframe name="star" style="margin-left: 2px; margin-bottom:-5px;" frameborder="0" scrolling="0"
+                        width="100px" height="20px"
+                        src="https://ghbtns.com/github-btn.html?user=dusign&repo=hexo-theme-snail&type=star&count=true">
+                    </iframe>
+                </p>
+            </div>
+        </div>
+    </div>
+
+</footer>
+
+<!-- jQuery -->
+
+<script src="/js/jquery.min.js"></script>
+
+
+<!-- Bootstrap Core JavaScript -->
+
+<script src="/js/bootstrap.min.js"></script>
+
+
+<!-- Custom Theme JavaScript -->
+
+<script src="/js/hux-blog.min.js"></script>
+
+
+<!-- Search -->
+
+<script src="/js/search.js"></script>
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("https://dusign.net/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("https://cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+<!-- Google Analytics -->
+
+
+<script>
+    // dynamic User by Hux
+    var _gaId = 'UA-XXXXXXXX-X';
+    var _gaDomain = 'yoursite';
+
+    // Originial
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', _gaId, _gaDomain);
+    ga('send', 'pageview');
+</script>
+
+
+
+
+<!-- Baidu Tongji -->
+
+
+<!-- Search -->
+
+    <script type="text/javascript">      
+        var search_path = "search.xml";
+        if (search_path.length == 0) {
+            search_path = "search.xml";
+        }
+    var path = "/" + search_path;
+    searchFunc(path, 'local-search-input', 'local-search-result');
+    </script>
+
+
+<!-- busuanzi -->
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+
+	<a id="rocket" href="#top" class=""></a>
+	<script type="text/javascript" src="/js/totop.js?v=1.0.0" async=""></script>
+    <script type="text/javascript" src="/js/toc.js?v=1.0.0" async=""></script>
+
+    
+        <!-- background effects line -->
+        
+
+        
+
+        <!-- background effects end -->
+    
+
+    <!--<script size="50" alpha='0.3' zIndex="-999" src="/js/ribbonStatic.js"></script>-->
+    
+        <script src="/js/ribbonDynamic.js"></script>
+    
+</body>
+
+</html>
